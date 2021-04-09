@@ -10,10 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
+
+@RestController
 public class ViveroRestController {
 
     @Autowired
@@ -29,7 +33,7 @@ public class ViveroRestController {
     ){
         Map<String, Object> response = new HashMap<>();
         try{
-            response.put("beneficiario", viveroService.findByUsuarioCreo(pageNo, pageSize, sortBy, orderBy,idTecnico));
+            response.put("viveros", viveroService.findByUsuarioCreo(pageNo, pageSize, sortBy, orderBy,idTecnico));
             response.put("success", "true" );
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
         }catch (DataAccessException e){
