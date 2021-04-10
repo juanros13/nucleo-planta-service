@@ -1,6 +1,5 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.beneficiariocommons.entity.Beneficiario;
 import gob.nucleo.plantacommons.entity.Vivero;
 import gob.nucleo.plantaservice.dao.IViveroDao;
 import gob.nucleo.usuariocommons.entity.Usuario;
@@ -28,7 +27,7 @@ public class ViveroService implements IViveroService{
         Usuario tecnico = new Usuario();
         tecnico.setId(idTecnico);
         Pageable paging =  paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-        return viveroDao.findByUsuarioCreo(tecnico, paging);
+        return viveroDao.findByUsuario(tecnico, paging);
     }
 
 }
