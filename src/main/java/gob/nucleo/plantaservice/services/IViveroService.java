@@ -1,6 +1,5 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.beneficiariocommons.entity.Beneficiario;
 import gob.nucleo.plantacommons.entity.Vivero;
 import org.springframework.data.domain.Page;
 
