@@ -29,5 +29,10 @@ public class ViveroService implements IViveroService{
         Pageable paging =  paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         return viveroDao.findByUsuario(tecnico, paging);
     }
+    @Override
+    @Transactional(readOnly = true)
+    public Vivero findById(Long id) {
+        return viveroDao.findById(id);
+    }
 
 }

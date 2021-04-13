@@ -26,7 +26,7 @@ public class BiofabricaRestController {
     public Biofabrica encuentraBiofabrica(
         @PathVariable Long idVivero
     ){
-        return biofabricaService.findByViveroId(idVivero);
+        return biofabricaService.findByVivero(idVivero);
     }
 
 }

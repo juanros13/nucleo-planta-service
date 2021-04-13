@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IViveroDao extends PagingAndSortingRepository<Vivero, Long> {
     public Page<Vivero> findByUsuario(Usuario usuario, Pageable pageable);
+
+    public Vivero findById(Long id);
+
 }
