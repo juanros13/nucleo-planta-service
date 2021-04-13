@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Service
 public class ViveroService implements IViveroService{
@@ -30,8 +32,8 @@ public class ViveroService implements IViveroService{
         return viveroDao.findByUsuario(tecnico, paging);
     }
     @Override
-    @Transactional(readOnly = true)
-    public Vivero findById(Long id) {
+    public Optional<Vivero> findById(Long id) {
+
         return viveroDao.findById(id);
     }
 

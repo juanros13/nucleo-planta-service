@@ -1,6 +1,9 @@
 package gob.nucleo.plantaservice.Controller;
 
 import gob.nucleo.plantacommons.entity.Biofabrica;
+import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.plantaservice.dao.IBiofabricaDao;
+import gob.nucleo.plantaservice.dao.IViveroDao;
 import gob.nucleo.plantaservice.services.IBiofabricaService;
 import gob.nucleo.plantaservice.services.IViveroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +23,17 @@ import java.util.Map;
 public class BiofabricaRestController {
 
     @Autowired
-    private IBiofabricaService biofabricaService;
+    private IBiofabricaDao biofabricaService;
+
+    @Autowired
+    private IViveroDao viveroService;
 
     @GetMapping("/biofabrica/{idVivero}")
     public Biofabrica encuentraBiofabrica(
         @PathVariable Long idVivero
     ){
-        return biofabricaService.findByVivero(idVivero);
+        Vivero vivero = viveroService.findById(idVivero).get();
+        return biofabricaService.findByVivero(vivero);
     }
 
 }

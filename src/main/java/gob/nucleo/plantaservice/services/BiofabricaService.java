@@ -13,13 +13,8 @@ public class BiofabricaService implements IBiofabricaService{
     private IBiofabricaDao biofabricaDao;
 
     @Autowired
-    private IViveroService viveroServiceDao;
+    private ViveroService viveroServiceDao;
 
-    @Override
-    @Transactional(readOnly = true)
-    public Biofabrica findByVivero(Long id) {
-        Vivero vivero = viveroServiceDao.findById(id);
-        return biofabricaDao.findByVivero(vivero);
-    }
+
 
 }
