@@ -1,6 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.viverocommons.entity.Vivero;
 import gob.nucleo.plantaservice.dao.IViveroDao;
 import gob.nucleo.usuariocommons.entity.Usuario;
 import org.slf4j.Logger;

@@ -1,7 +1,7 @@
 package gob.nucleo.plantaservice.dao;
 
-import gob.nucleo.plantacommons.entity.Biofabrica;
-import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.viverocommons.entity.Biofabrica;
+import gob.nucleo.viverocommons.entity.Vivero;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

@@ -1,6 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.plantacommons.entity.Biofabrica;
+import gob.nucleo.viverocommons.entity.Biofabrica;
 
 public interface IBiofabricaService {
 }

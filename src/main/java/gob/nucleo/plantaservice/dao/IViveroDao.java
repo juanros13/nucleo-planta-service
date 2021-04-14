@@ -1,6 +1,6 @@
 package gob.nucleo.plantaservice.dao;
 
-import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.viverocommons.entity.Vivero;
 import gob.nucleo.usuariocommons.entity.Usuario;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

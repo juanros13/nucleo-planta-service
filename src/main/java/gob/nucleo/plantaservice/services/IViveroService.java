@@ -1,6 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.viverocommons.entity.Vivero;
 import org.springframework.data.domain.Page;
 
 import java.util.Optional;

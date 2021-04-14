@@ -1,7 +1,7 @@
 package gob.nucleo.plantaservice.Controller;
 
-import gob.nucleo.plantacommons.entity.Biofabrica;
-import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.viverocommons.entity.Biofabrica;
+import gob.nucleo.viverocommons.entity.Vivero;
 import gob.nucleo.plantaservice.dao.IBiofabricaDao;
 import gob.nucleo.plantaservice.dao.IViveroDao;
 import gob.nucleo.plantaservice.services.IBiofabricaService;

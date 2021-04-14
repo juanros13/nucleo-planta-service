@@ -20,6 +20,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>gob.nucleo</groupId>
+			<artifactId>vivero-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>gob.nucleo</groupId>
 			<artifactId>beneficiario-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

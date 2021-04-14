@@ -1,7 +1,7 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.plantacommons.entity.Biofabrica;
-import gob.nucleo.plantacommons.entity.Vivero;
+import gob.nucleo.viverocommons.entity.Biofabrica;
+import gob.nucleo.viverocommons.entity.Vivero;
 import gob.nucleo.plantaservice.dao.IBiofabricaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
