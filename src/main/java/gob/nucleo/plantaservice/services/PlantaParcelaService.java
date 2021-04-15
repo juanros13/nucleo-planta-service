@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlantaParcelaService implements IPlantaParcelaService{
 
@@ -17,7 +19,7 @@ public class PlantaParcelaService implements IPlantaParcelaService{
     IPlantaParcelaDao plantaParcelaDao;
 
     @Override
-    public PlantaParcela findByDisenoAgroforestal(Long idDisenoAgroforestal) {
+    public List<PlantaParcela> findByDisenoAgroforestal(Long idDisenoAgroforestal) {
         DisenoAgroforestal diseno = new DisenoAgroforestal();
         diseno.setId(idDisenoAgroforestal);
         return plantaParcelaDao.findByDisenoAgroforestal(diseno);
