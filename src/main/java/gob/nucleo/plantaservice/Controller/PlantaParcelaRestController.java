@@ -1,38 +1,28 @@
 package gob.nucleo.plantaservice.Controller;
 
-import gob.nucleo.plantaservice.services.IViveroService;
+import gob.nucleo.plantaservice.services.IPlantaParcelaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 @RestController
-public class ViveroRestController {
+public class PlantaParcelaRestController {
 
     @Autowired
-    private IViveroService viveroService;
+    IPlantaParcelaService plantaParcelaService;
 
-    @GetMapping("/busquedaXtecnico/{idTecnico}")
-    public ResponseEntity<?> encuentraVivero(
-        @RequestParam(defaultValue = "0") Integer pageNo,
-        @RequestParam(defaultValue = "100") Integer pageSize,
-        @RequestParam(defaultValue = "id") String sortBy,
-        @RequestParam(defaultValue = "desc") String orderBy,
-        @PathVariable Long idTecnico
-    ){
+    @GetMapping("/plantaParcelaXdiseno/{idDiseno}")
+    public ResponseEntity<?> encuentraCultivoPredio (@PathVariable Long idDiseno){
         Map<String, Object> response = new HashMap<>();
         try{
-            response.put("viveros", viveroService.findByUsuarioCreo(pageNo, pageSize, sortBy, orderBy,idTecnico));
+            response.put("plantaParcela", plantaParcelaService.findByDisenoAgroforestal(idDiseno));
             response.put("success", "true" );
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
         }catch (DataAccessException e){
@@ -41,6 +31,6 @@ public class ViveroRestController {
             response.put("success", "false" );
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
 
+    }
 }
