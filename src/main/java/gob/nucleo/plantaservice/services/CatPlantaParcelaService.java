@@ -3,11 +3,8 @@ package gob.nucleo.plantaservice.services;
 import gob.nucleo.plantaservice.dao.ICatFuenteAbastesimientoDao;
 import gob.nucleo.plantaservice.dao.ICatObjetivoDao;
 import gob.nucleo.plantaservice.dao.IViveroPlantaDao;
-import gob.nucleo.viverocommons.entity.CatEspecie;
-import gob.nucleo.viverocommons.entity.CatFuenteAbastecimiento;
-import gob.nucleo.viverocommons.entity.CatObjetivo;
+import gob.nucleo.viverocommons.entity.*;
 
-import gob.nucleo.viverocommons.entity.ViveroPlanta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +26,6 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     @Autowired
     IViveroPlantaDao viveroPlantaDao;
 
-
     @Override
     public List<CatObjetivo> findCatalogoObjetivo() {
         return catObjetivoDao.findAll();
@@ -50,4 +46,5 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
 
         return viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catEspecie, fuente ) ;
     }
+
 }

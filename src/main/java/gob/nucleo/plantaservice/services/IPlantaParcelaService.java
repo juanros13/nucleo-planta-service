@@ -7,4 +7,8 @@ import java.util.List;
 public interface IPlantaParcelaService {
 
     List<PlantaParcela> findByDisenoAgroforestal(Long idDisenoAgroforestal);
+
+    PlantaParcela guardaPlantaParcela (PlantaParcela plantaParcela);
+
+    PlantaParcela actualizaPlantaParcela (PlantaParcela plantaParcela);
 }

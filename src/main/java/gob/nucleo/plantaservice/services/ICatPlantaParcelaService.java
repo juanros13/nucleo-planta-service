@@ -13,4 +13,5 @@ public interface ICatPlantaParcelaService {
     List<CatFuenteAbastecimiento> findCatalogoFuenteAbastecimiento();
 
     List <ViveroPlanta> findViverosByEspecieAndOrigen(Long especie, Long origen);
+
 }
