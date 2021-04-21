@@ -1,5 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
+import gob.nucleo.viverocommons.entity.CatEspecie;
 import gob.nucleo.viverocommons.entity.CatFuenteAbastecimiento;
 import gob.nucleo.viverocommons.entity.CatObjetivo;
 import gob.nucleo.viverocommons.entity.ViveroPlanta;
@@ -14,5 +15,6 @@ public interface ICatPlantaParcelaService {
 
     List <ViveroPlanta> findViverosByEspecieAndOrigenSubcategoria(Long especie, Long origen, Long subCategoria);
 
+    List <CatEspecie> findEspecieSubcategoria(Long especie);
 
 }

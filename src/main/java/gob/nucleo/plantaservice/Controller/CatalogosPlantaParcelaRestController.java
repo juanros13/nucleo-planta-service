@@ -66,4 +66,20 @@ public class CatalogosPlantaParcelaRestController {
         }
 
     }
+
+    @GetMapping("/catalogoEspecieSubcategoria/{idEspecie}")
+    public ResponseEntity<?> catalogoEspecieSubcategoria (@PathVariable Long idEspecie){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            response.put("catalogoEspecieSubcategoria", catPlantaParcelaService.findEspecieSubcategoria(idEspecie));
+            response.put("success", "true" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
+        }catch (DataAccessException e){
+            response.put("mensaje", "Error al realizar la consulta a base de datos" );
+            response.put("error",  e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            response.put("success", "false" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 }

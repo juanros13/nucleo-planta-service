@@ -48,14 +48,19 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     @Override
     public List<ViveroPlanta> findViverosByEspecieAndOrigenSubcategoria(Long especie, Long origen, Long subCategoria) {
         CatEspecieCategoria  catEspecieCategoria = new CatEspecieCategoria();
-        CatEspecie catEspecie = new CatEspecie();
-        CatFuenteAbastecimiento catFuenteAbastecimiento = new CatFuenteAbastecimiento();
         catEspecieCategoria.setId(especie);
         CatEspecieSubcategoria catEspecieSubcategoria = catEspecieSubcategoriaDao.findAllByCatEspecieCategoriaAndId(catEspecieCategoria, subCategoria);
         return catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria).stream().map(catalogoEspecie -> {
           ViveroPlanta vivero = viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catalogoEspecie, catFuenteAbastesimientoDao.findById(origen).get());
             return vivero;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CatEspecie> findEspecieSubcategoria(Long especie) {
+        CatEspecieSubcategoria catEspecieSubcategoria = new CatEspecieSubcategoria();
+        catEspecieSubcategoria.setId(especie);
+        return catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria);
     }
 
 
