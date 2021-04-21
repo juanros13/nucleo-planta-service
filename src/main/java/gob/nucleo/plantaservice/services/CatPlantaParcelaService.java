@@ -1,8 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.plantaservice.dao.ICatFuenteAbastesimientoDao;
-import gob.nucleo.plantaservice.dao.ICatObjetivoDao;
-import gob.nucleo.plantaservice.dao.IViveroPlantaDao;
+import gob.nucleo.plantaservice.dao.*;
 import gob.nucleo.viverocommons.entity.*;
 
 import org.slf4j.Logger;
@@ -11,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CatPlantaParcelaService implements ICatPlantaParcelaService{
@@ -26,6 +26,15 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     @Autowired
     IViveroPlantaDao viveroPlantaDao;
 
+    @Autowired
+    ICatEspecieCategoriaDao catEspecieCategoriaDao;
+
+    @Autowired
+    ICatEspecieSubcategoriaDao catEspecieSubcategoriaDao;
+
+    @Autowired
+    ICatEspecieDao catEspecieDao;
+
     @Override
     public List<CatObjetivo> findCatalogoObjetivo() {
         return catObjetivoDao.findAll();
@@ -37,14 +46,17 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     }
 
     @Override
-    public List<ViveroPlanta> findViverosByEspecieAndOrigen(Long especie, Long origen) {
+    public List<ViveroPlanta> findViverosByEspecieAndOrigenSubcategoria(Long especie, Long origen, Long subCategoria) {
+        CatEspecieCategoria  catEspecieCategoria = new CatEspecieCategoria();
         CatEspecie catEspecie = new CatEspecie();
-        catEspecie.setId(especie);
-        CatFuenteAbastecimiento fuente = new CatFuenteAbastecimiento();
-        fuente.setId(origen);
-
-
-        return viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catEspecie, fuente ) ;
+        CatFuenteAbastecimiento catFuenteAbastecimiento = new CatFuenteAbastecimiento();
+        catEspecieCategoria.setId(especie);
+        CatEspecieSubcategoria catEspecieSubcategoria = catEspecieSubcategoriaDao.findAllByCatEspecieCategoriaAndId(catEspecieCategoria, subCategoria);
+        return catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria).stream().map(catalogoEspecie -> {
+          ViveroPlanta vivero = viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catalogoEspecie, catFuenteAbastesimientoDao.findById(origen).get());
+            return vivero;
+        }).collect(Collectors.toList());
     }
+
 
 }

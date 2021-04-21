@@ -50,17 +50,18 @@ public class CatalogosPlantaParcelaRestController {
 
     }
 
-    @GetMapping("/catalogoViveroXEspecieXOrigen/{idEspecie}/{idOrigen}")
-    public ResponseEntity<?> catalogoViveroXEspecieXOrigen (@PathVariable Long idEspecie, @PathVariable Long idOrigen ){
+    @GetMapping("/catalogoViveroXEspecieXOrigenXSubcategoria/{idEspecie}/{idOrigen}/{subCategoria}")
+    public ResponseEntity<?> catalogoViveroXEspecieXOrigenXSubcategoria(@PathVariable Long idEspecie, @PathVariable Long idOrigen,
+                                                                        @PathVariable Long subCategoria) {
         Map<String, Object> response = new HashMap<>();
-        try{
-            response.put("catalogoViveroXEspecieXOrigen", catPlantaParcelaService.findViverosByEspecieAndOrigen(idEspecie, idOrigen));
-            response.put("success", "true" );
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
-        }catch (DataAccessException e){
-            response.put("mensaje", "Error al realizar la consulta a base de datos" );
-            response.put("error",  e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            response.put("success", "false" );
+        try {
+            response.put("catalogoViveroXEspecieXOrigenXSubcategoria", catPlantaParcelaService.findViverosByEspecieAndOrigenSubcategoria(idEspecie, idOrigen, subCategoria));
+            response.put("success", "true");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al realizar la consulta a base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            response.put("success", "false");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
