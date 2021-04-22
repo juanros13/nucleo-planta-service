@@ -35,6 +35,9 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     @Autowired
     ICatEspecieDao catEspecieDao;
 
+    @Autowired
+    ICatMermaDao catMermaDao;
+
     @Override
     public List<CatObjetivo> findCatalogoObjetivo() {
         return catObjetivoDao.findAll();
@@ -61,6 +64,11 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
         CatEspecieSubcategoria catEspecieSubcategoria = new CatEspecieSubcategoria();
         catEspecieSubcategoria.setId(especie);
         return catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria);
+    }
+
+    @Override
+    public List<CatMerma> findCatalogoMerma() {
+        return catMermaDao.findAll();
     }
 
 
