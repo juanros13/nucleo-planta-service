@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface IViveroPlantaDao extends JpaRepository <ViveroPlanta, Long> {
 
-    ViveroPlanta findByEspecieAndFuenteAbastecimiento(CatEspecie especie, CatFuenteAbastecimiento fuenteAbastecimiento);
+   List <ViveroPlanta> findByEspecieAndFuenteAbastecimiento(CatEspecie especie, CatFuenteAbastecimiento fuenteAbastecimiento);
 }

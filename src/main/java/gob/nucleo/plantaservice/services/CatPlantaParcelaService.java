@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,11 +53,17 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     public List<ViveroPlanta> findViverosByEspecieAndOrigenSubcategoria(Long especie, Long origen, Long subCategoria) {
         CatEspecieCategoria  catEspecieCategoria = new CatEspecieCategoria();
         catEspecieCategoria.setId(especie);
+        List<ViveroPlanta> plantaList = new ArrayList<>();
         CatEspecieSubcategoria catEspecieSubcategoria = catEspecieSubcategoriaDao.findAllByCatEspecieCategoriaAndId(catEspecieCategoria, subCategoria);
-        return catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria).stream().map(catalogoEspecie -> {
-          ViveroPlanta vivero = viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catalogoEspecie, catFuenteAbastesimientoDao.findById(origen).get());
-            return vivero;
+         catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria).stream().map(catalogoEspecie -> {
+            ViveroPlanta viveroPlanta = new ViveroPlanta();
+            List <ViveroPlanta> lista = viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catalogoEspecie, catFuenteAbastesimientoDao.findById(origen).get());
+             for (ViveroPlanta planta: lista) {
+                 plantaList.add(planta);
+             }
+            return viveroPlanta;
         }).collect(Collectors.toList());
+        return plantaList;
     }
 
     @Override
