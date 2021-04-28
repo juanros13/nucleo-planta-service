@@ -1,7 +1,7 @@
 package gob.nucleo.plantaservice.Controller;
 
 import gob.nucleo.plantaservice.services.IMermaService;
-import gob.nucleo.viverocommons.entity.Merma;
+import gob.nucleo.viverocommons.entity.PlantaParcela;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -34,10 +34,10 @@ public class MermaRestController {
     }
 
     @PostMapping("/guardaMerma")
-    public ResponseEntity<?> guardaMerma (@RequestBody Merma merma){
+    public ResponseEntity<?> guardaMerma (@RequestBody PlantaParcela plantaParcela){
         Map<String, Object> response = new HashMap<>();
         try{
-            mermaService.guardaMerma(merma);
+            mermaService.guardaMerma(plantaParcela);
             response.put("mensaje", "La Merma se ha guardado  con éxito");
             response.put("success", "true" );
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED) ;
@@ -51,10 +51,10 @@ public class MermaRestController {
     }
 
     @PutMapping("/actualizaMerma")
-    public ResponseEntity<?> actualizaMerma (@RequestBody Merma merma){
+    public ResponseEntity<?> actualizaMerma (@RequestBody PlantaParcela plantaParcela){
         Map<String, Object> response = new HashMap<>();
         try{
-            mermaService.actualizaMerma(merma);
+            mermaService.actualizaMerma(plantaParcela);
             response.put("mensaje", "La merma se ha actualizado con éxito");
             response.put("success", "true" );
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;

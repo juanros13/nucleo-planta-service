@@ -1,15 +1,17 @@
 package gob.nucleo.plantaservice.services;
 
-import gob.nucleo.viverocommons.entity.Merma;
+
+import gob.nucleo.viverocommons.entity.PlantaParcela;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public interface IMermaService {
 
-    List<Merma> findMermaByPlantaParcela(Long idPlantaParcela);
+    List<PlantaParcela> findMermaByPlantaParcela(Long idPlantaParcela);
 
-    Merma guardaMerma (Merma merma);
+    PlantaParcela guardaMerma (PlantaParcela merma);
 
-    Merma actualizaMerma (Merma merma);
+    PlantaParcela actualizaMerma (PlantaParcela merma);
 
 }
