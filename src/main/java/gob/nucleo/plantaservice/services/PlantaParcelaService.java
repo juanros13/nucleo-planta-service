@@ -1,6 +1,8 @@
 package gob.nucleo.plantaservice.services;
 
 import gob.nucleo.plantaservice.dao.IPlantaParcelaDao;
+import gob.nucleo.plantaservice.dao.IViveroDao;
+import gob.nucleo.plantaservice.dao.IViveroPlantaDao;
 import gob.nucleo.viverocommons.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,9 @@ public class PlantaParcelaService implements IPlantaParcelaService{
     @Autowired
     IPlantaParcelaDao plantaParcelaDao;
 
+    @Autowired
+    IViveroDao viveroDao;
+
     @Override
     public List<PlantaParcela> findByDisenoAgroforestal(Long idDisenoAgroforestal) {
         DisenoAgroforestal diseno = new DisenoAgroforestal();
@@ -27,6 +32,8 @@ public class PlantaParcelaService implements IPlantaParcelaService{
 
     @Override
     public PlantaParcela guardaPlantaParcela(PlantaParcela plantaParcela) {
+      //  Vivero viv = viveroDao.findById(plantaParcela.getVivero().getId()).get();
+       // plantaParcela.setVivero(viv);
         return plantaParcelaDao.save(plantaParcela);
     }
 
