@@ -1,5 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
+import gob.nucleo.plantaservice.dao.IDisenoAgroforestalDao;
 import gob.nucleo.plantaservice.dao.IPlantaParcelaDao;
 import gob.nucleo.plantaservice.dao.IViveroDao;
 import gob.nucleo.plantaservice.dao.IViveroPlantaDao;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -19,6 +21,9 @@ public class PlantaParcelaService implements IPlantaParcelaService{
 
     @Autowired
     IPlantaParcelaDao plantaParcelaDao;
+
+    @Autowired
+    IDisenoAgroforestalDao disenoAgroforestalDao;
 
     @Autowired
     IViveroDao viveroDao;
@@ -40,5 +45,15 @@ public class PlantaParcelaService implements IPlantaParcelaService{
     @Override
     public PlantaParcela actualizaPlantaParcela(PlantaParcela plantaParcela) {
         return plantaParcelaDao.save(plantaParcela);
+    }
+
+    @Transactional
+    public void deletePlantaParcela(Long id) {
+        plantaParcelaDao.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteDisenoAgroforestal(Long id) {
+        disenoAgroforestalDao.deleteById(id);
     }
 }

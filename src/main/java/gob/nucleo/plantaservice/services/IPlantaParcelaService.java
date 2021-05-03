@@ -11,4 +11,8 @@ public interface IPlantaParcelaService {
     PlantaParcela guardaPlantaParcela (PlantaParcela plantaParcela);
 
     PlantaParcela actualizaPlantaParcela (PlantaParcela plantaParcela);
+
+    void deletePlantaParcela(Long id);
+
+    void deleteDisenoAgroforestal(Long id);
 }

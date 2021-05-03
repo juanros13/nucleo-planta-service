@@ -66,4 +66,40 @@ public class PlantaParcelaRestController {
         }
 
     }
+
+    @DeleteMapping("/plantaParcelaElimina/{idPlanta}")
+    //@ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<?>  deletePlantaParcela(@PathVariable Long idPlanta){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            plantaParcelaService.deletePlantaParcela(idPlanta);
+        }catch (DataAccessException e){
+            response.put("success", "false" );
+            response.put("mensaje", "Error al eliminar planta parcela en la DB");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("success", "true" );
+        response.put("mensaje", "La planta ha sido eliminada con exito");
+        return new ResponseEntity<Map>(response, HttpStatus.OK);
+
+    }
+
+    @DeleteMapping("/disenoAgroforestalElimina/{idDisenoAgro}")
+    //@ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<?>  deleteDisenoAgroforestal(@PathVariable Long idDisenoAgro){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            plantaParcelaService.deleteDisenoAgroforestal(idDisenoAgro);
+        }catch (DataAccessException e){
+            response.put("success", "false" );
+            response.put("mensaje", "Error al eliminar diseño agroforestal en la DB");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("success", "true" );
+        response.put("mensaje", "el diseño agroforestal ha sido eliminada con exito");
+        return new ResponseEntity<Map>(response, HttpStatus.OK);
+
+    }
 }
