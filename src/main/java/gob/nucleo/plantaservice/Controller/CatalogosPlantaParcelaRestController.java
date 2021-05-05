@@ -50,12 +50,12 @@ public class CatalogosPlantaParcelaRestController {
 
     }
 
-    @GetMapping("/catalogoViveroXEspecieXOrigenXSubcategoria/{idEspecie}/{idOrigen}/{subCategoria}")
+    @GetMapping("/catalogoViveroXEspecieXOrigenXSubcategoria/{idEspecie}/{idOrigen}/{subCategoria}/{idTerritorio}")
     public ResponseEntity<?> catalogoViveroXEspecieXOrigenXSubcategoria(@PathVariable Long idEspecie, @PathVariable Long idOrigen,
-                                                                        @PathVariable Long subCategoria) {
+                                                                        @PathVariable Long subCategoria, @PathVariable Long idTerritorio) {
         Map<String, Object> response = new HashMap<>();
         try {
-            response.put("catalogoViveroXEspecieXOrigenXSubcategoria", catPlantaParcelaService.findViverosByEspecieAndOrigenSubcategoria(idEspecie, idOrigen, subCategoria));
+            response.put("catalogoViveroXEspecieXOrigenXSubcategoria", catPlantaParcelaService.findViverosByEspecieAndOrigenSubcategoria(idEspecie, idOrigen, subCategoria, idTerritorio));
             response.put("success", "true");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
         } catch (DataAccessException e) {

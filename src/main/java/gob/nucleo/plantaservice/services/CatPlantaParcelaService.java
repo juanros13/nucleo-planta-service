@@ -39,6 +39,9 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     @Autowired
     ICatMermaDao catMermaDao;
 
+    @Autowired
+    ITerritorioDao territorioDao;
+
     @Override
     public List<CatObjetivo> findCatalogoObjetivo() {
         return catObjetivoDao.findAll();
@@ -50,14 +53,16 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
     }
 
     @Override
-    public List<ViveroPlanta> findViverosByEspecieAndOrigenSubcategoria(Long especie, Long origen, Long subCategoria) {
+    public List<ViveroPlanta> findViverosByEspecieAndOrigenSubcategoria(Long especie, Long origen, Long subCategoria, Long territorio) {
         CatEspecieCategoria  catEspecieCategoria = new CatEspecieCategoria();
         catEspecieCategoria.setId(especie);
         List<ViveroPlanta> plantaList = new ArrayList<>();
         CatEspecieSubcategoria catEspecieSubcategoria = catEspecieSubcategoriaDao.findAllByCatEspecieCategoriaAndId(catEspecieCategoria, subCategoria);
          catEspecieDao.findByCatEspecieSubcategoria(catEspecieSubcategoria).stream().map(catalogoEspecie -> {
             ViveroPlanta viveroPlanta = new ViveroPlanta();
-            List <ViveroPlanta> lista = viveroPlantaDao.findByEspecieAndFuenteAbastecimiento(catalogoEspecie, catFuenteAbastesimientoDao.findById(origen).get());
+            Territorio terri= territorioDao.findById(territorio).get();
+            List <ViveroPlanta> lista = viveroPlantaDao.findByEspecieAndFuenteAbastecimientoAndTerritorio(catalogoEspecie,
+                    catFuenteAbastesimientoDao.findById(origen).get(), terri);
              for (ViveroPlanta planta: lista) {
                  plantaList.add(planta);
              }
