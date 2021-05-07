@@ -83,5 +83,19 @@ public class CatPlantaParcelaService implements ICatPlantaParcelaService{
         return catMermaDao.findAll();
     }
 
+    @Override
+    public List<ViveroPlanta> findViverosByOrigenEspecieTerritorio(Long origen, Long especie, Long territorio) {
+        List<ViveroPlanta> plantaList = new ArrayList<>();
+        CatEspecie catEspecie = catEspecieDao.getOne(especie);
+            ViveroPlanta viveroPlanta = new ViveroPlanta();
+            Territorio terri= territorioDao.findById(territorio).get();
+            List <ViveroPlanta> lista = viveroPlantaDao.findByEspecieAndFuenteAbastecimientoAndTerritorio(catEspecie,
+                    catFuenteAbastesimientoDao.findById(origen).get(), terri);
+            for (ViveroPlanta planta: lista) {
+                plantaList.add(planta);
+            }
+        return plantaList;
+    }
+
 
 }

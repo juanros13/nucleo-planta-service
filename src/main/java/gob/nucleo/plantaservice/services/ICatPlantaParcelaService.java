@@ -16,4 +16,6 @@ public interface ICatPlantaParcelaService {
 
     List <CatMerma>  findCatalogoMerma();
 
+    List <ViveroPlanta> findViverosByOrigenEspecieTerritorio(Long origen, Long especie, Long territorio);
+
 }
