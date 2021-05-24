@@ -4,7 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@EntityScan({"gob.nucleo.beneficiariocommons.entity", "gob.nucleo.usuariocommons.entity", "gob.nucleo.plantacommons.entity","gob.nucleo.viverocommons.entity"})
+@EntityScan({"gob.nucleo.beneficiariocommons.entity",
+		"gob.nucleo.usuariocommons.entity",
+		"gob.nucleo.plantacommons.entity",
+		"gob.nucleo.viverocommons.entity",
+		"gob.nucleo.estructuracommons.entity"})
 @SpringBootApplication
 public class PlantaServiceApplication {
 
