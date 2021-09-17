@@ -17,6 +17,6 @@ public class TableroAvanceService  implements ITableroAvanceService{
 
     @Override
     public List<TableroAvance> findByBeneficiarioId(Long beneficiarioId) {
-        return tableroAvanceDao.findByBeneficiarioId(beneficiarioId);
+        return tableroAvanceDao.findByBeneficiarioIdNative(beneficiarioId);
     }
 }
