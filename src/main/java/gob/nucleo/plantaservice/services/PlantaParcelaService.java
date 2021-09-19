@@ -71,7 +71,10 @@ public class PlantaParcelaService implements IPlantaParcelaService{
                     int[] totalAvance = { 0 };
                     if(!plantas.isEmpty()) {
                         plantas.stream().map(planta -> {
-                            totalAvance[0] += planta.getCantidadSobrevive().intValue();
+                            if(planta.getCantidadSobrevive() != null){
+                                totalAvance[0] += planta.getCantidadSobrevive().intValue();
+                            }
+
                             return planta;
                         }).collect(Collectors.toList());
                         disenio.setCantidadAvance(Long.valueOf(totalAvance[0]));
