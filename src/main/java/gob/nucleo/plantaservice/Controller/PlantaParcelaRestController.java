@@ -17,6 +17,24 @@ public class PlantaParcelaRestController {
     @Autowired
     IPlantaParcelaService plantaParcelaService;
 
+    @GetMapping("/actualizarAvancePlanta/{idBeneficiario}")
+    public ResponseEntity<?> actualizarAvancePlantaParcela (@PathVariable Long idBeneficiario){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            response.put("avancePlantaParcela", plantaParcelaService.actualizaAvancePlanta(idBeneficiario));
+            response.put("success", "true" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
+        }catch (DataAccessException e){
+            response.put("mensaje", "Error al realizar la consulta a base de datos" );
+            response.put("error",  e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            response.put("success", "false" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+
+
     @GetMapping("/plantaParcelaXdiseno/{idDiseno}")
     public ResponseEntity<?> encuentraCultivoPredio (@PathVariable Long idDiseno){
         Map<String, Object> response = new HashMap<>();

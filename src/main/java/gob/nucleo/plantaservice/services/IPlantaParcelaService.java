@@ -1,5 +1,6 @@
 package gob.nucleo.plantaservice.services;
 
+import gob.nucleo.viverocommons.entity.DisenoAgroforestal;
 import gob.nucleo.viverocommons.entity.PlantaParcela;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface IPlantaParcelaService {
     void deletePlantaParcela(Long id);
 
     void deleteDisenoAgroforestal(Long id);
+
+    List<DisenoAgroforestal> actualizaAvancePlanta(Long idBeneficiario);
 }
