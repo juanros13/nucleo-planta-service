@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface IReportePlantaAvanceDao extends JpaRepository<AvanceFacilitadorVO, Long> {
     @Query(value = "SELECT " +
+            "row_number() OVER (ORDER BY uf_main.facilitador_id) AS id, " +
             "rpt_facilitador_planta_avance.facilitador_id," +
             "rpt_facilitador_planta_avance.subcategoria_especie_id," +
             "coalesce(rpt_facilitador_planta_avance.meta,0)AS meta," +

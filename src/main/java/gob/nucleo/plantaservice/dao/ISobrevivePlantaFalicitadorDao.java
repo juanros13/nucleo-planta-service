@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ISobrevivePlantaFalicitadorDao extends JpaRepository<SobreviveCategoriaFacilitadorVO, Long> {
     @Query(value = "SELECT " +
+            "row_number() OVER (ORDER BY rpt_facilitador_planta_sobrevive_x_categoria.facilitador_id) AS id, " +
             "rpt_facilitador_planta_sobrevive_x_categoria.facilitador_id," +
             "cad_cat_especie_categoria.nombre," +
             "rpt_facilitador_planta_sobrevive_x_categoria.sobrevive " +
