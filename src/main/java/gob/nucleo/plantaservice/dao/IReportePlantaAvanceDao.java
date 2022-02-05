@@ -10,15 +10,17 @@ import java.util.List;
 public interface IReportePlantaAvanceDao extends JpaRepository<AvanceFacilitadorVO, Long> {
     @Query(value = "SELECT " +
             "row_number() OVER (ORDER BY uf_main.facilitador_id) AS id, " +
-            "rpt_facilitador_planta_avance.facilitador_id," +
-            "rpt_facilitador_planta_avance.subcategoria_especie_id," +
-            "coalesce(rpt_facilitador_planta_avance.meta,0)AS meta," +
-            "coalesce(rpt_facilitador_planta_sobrevive.sobrevive,0)AS sobrevive," +
+            "rpt_facilitador_planta_avance.facilitador_id, " +
+            "rpt_facilitador_planta_avance.subcategoria_especie_id, " +
+            "coalesce(rpt_facilitador_planta_avance.meta,0) AS meta, " +
+            "coalesce(rpt_facilitador_planta_sobrevive.sobrevive,0) AS sobrevive, " +
+            "cad_cat_especie_categoria.nombre AS categoria, " +
             "CONCAT(cad_cat_especie_subcategoria.nombre_comun, ' - ', cad_cat_especie_subcategoria.nombre_cientifico) AS nombre_planta," +
             "uf_main.name as nombre_facilitador " +
             "FROM rpt_facilitador_planta_avance " +
             "LEFT JOIN usuarios uf_main on uf_main.estructura_id =  rpt_facilitador_planta_avance.facilitador_id and uf_main.perfil_id in (8) " +
             "LEFT JOIN cad_cat_especie_subcategoria on rpt_facilitador_planta_avance.subcategoria_especie_id = cad_cat_especie_subcategoria.id " +
+            "LEFT JOIN cad_cat_especie_categoria on cad_cat_especie_categoria.id = cad_cat_especie_subcategoria.categoria_id " +
             "LEFT JOIN rpt_facilitador_planta_sobrevive ON " +
             "rpt_facilitador_planta_sobrevive.subcategoria_especie_id = cad_cat_especie_subcategoria.id AND " +
             "rpt_facilitador_planta_sobrevive.facilitador_id  = rpt_facilitador_planta_avance.facilitador_id " +
