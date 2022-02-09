@@ -50,5 +50,21 @@ public class ReportePlantaTecnicoAvanceController {
 
 
     }
+    @GetMapping("/reportePlantaTecnicoTotales/{idTecnico}")
+    public ResponseEntity<?> reportePlantaTecnicoTotales(@PathVariable Long idTecnico){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            response.put("reportePlanta", reportePlantaTecnicoAvanceService.getReporteAvanceTecnicoTotales(idTecnico));
+            response.put("success", "true" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
+        }catch (DataAccessException e){
+            response.put("mensaje", "Error al realizar la consulta a base de datos" );
+            response.put("error",  e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            response.put("success", "false" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
 }
 

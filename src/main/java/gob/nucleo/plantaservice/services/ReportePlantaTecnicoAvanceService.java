@@ -1,7 +1,9 @@
 package gob.nucleo.plantaservice.services;
 
 import gob.nucleo.plantacommons.entity.AvanceTecnicoCategoriaPlantaVO;
+import gob.nucleo.plantacommons.entity.AvanceTecnicoTotalesVO;
 import gob.nucleo.plantacommons.entity.AvanceTecnicoVO;
+import gob.nucleo.plantaservice.dao.IReportePlantaAvanceTecnicoTotalesDao;
 import gob.nucleo.plantaservice.dao.IReportePlantaTecnicoAvanceCategoriaDao;
 import gob.nucleo.plantaservice.dao.IReportePlantaTecnicoAvanceDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class ReportePlantaTecnicoAvanceService implements IReportePlantaTecnicoA
 
     @Autowired
     IReportePlantaTecnicoAvanceCategoriaDao reportePlantaTecnicoAvanceCategoriaDao;
+    @Autowired
+    IReportePlantaAvanceTecnicoTotalesDao reportePlantaAvanceTecnicoTotalesDao;
 
     @Override
     public List<AvanceTecnicoVO> getReporteAvanceTecnicoXEspecie(Long idTecnico) {
@@ -25,6 +29,10 @@ public class ReportePlantaTecnicoAvanceService implements IReportePlantaTecnicoA
     @Override
     public List<AvanceTecnicoCategoriaPlantaVO> getReporteAvanceTecnicoXCategoria(Long idTecnico) {
         return reportePlantaTecnicoAvanceCategoriaDao.findByAvancePlantaTecnicoXCategoria(idTecnico);
+    }
+    @Override
+    public List<AvanceTecnicoTotalesVO> getReporteAvanceTecnicoTotales(Long idTecnico) {
+        return reportePlantaAvanceTecnicoTotalesDao.findByAvancePlantaTecnicosTotales(idTecnico,idTecnico,idTecnico);
     }
 }
 
