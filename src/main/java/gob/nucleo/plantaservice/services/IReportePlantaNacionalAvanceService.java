@@ -9,5 +9,7 @@ public interface IReportePlantaNacionalAvanceService {
     List<AvanceNacionalVO> getReporteAvanceNacionalXEspecie ();
     List<AvanceNacionalCategoriaPlantaVO> getReporteAvanceNacionalXCategoria();
     List<AvanceNacionalTotalesVO> getReporteAvanceNacionalTotales(Long idTerritorio);
+    List<AvanceNacionalMetaVO> getReporteAvanceNacionalMeta();
+    List<AvanceNacionalSobreviveVO> getReporteAvanceNacionalSobrevive();
 
 }

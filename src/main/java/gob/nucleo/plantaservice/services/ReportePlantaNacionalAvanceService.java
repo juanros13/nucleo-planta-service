@@ -19,6 +19,12 @@ public class ReportePlantaNacionalAvanceService implements IReportePlantaNaciona
     @Autowired
     IReportePlantaNacionalAvanceTotalesDao reportePlantaNacionalAvanceTotalesDao;
 
+    @Autowired
+    IReportePlantaNacionalMetaDao reportePlantaNacionalMetaDao;
+
+    @Autowired
+    IReportePlantaNacionalSobreviveDao reportePlantaNacionalSobreviveDao;
+
     @Override
     public List<AvanceNacionalVO> getReporteAvanceNacionalXEspecie() {
         return reportePlantaNacionalAvanceDao.findByAvancePlantaNacionalXEspecie();
@@ -32,5 +38,17 @@ public class ReportePlantaNacionalAvanceService implements IReportePlantaNaciona
     public List<AvanceNacionalTotalesVO> getReporteAvanceNacionalTotales(Long idTerritorio) {
         return reportePlantaNacionalAvanceTotalesDao.findByAvancePlantaNacionalTotales(idTerritorio,idTerritorio,idTerritorio);
     }
+
+
+    @Override
+    public List<AvanceNacionalMetaVO> getReporteAvanceNacionalMeta() {
+        return reportePlantaNacionalMetaDao.findByAvancePlantaNacionalMeta();
+    }
+
+    @Override
+    public List<AvanceNacionalSobreviveVO> getReporteAvanceNacionalSobrevive() {
+        return reportePlantaNacionalSobreviveDao.findByAvancePlantaNacionalSobrevive();
+    }
 }
+
 
