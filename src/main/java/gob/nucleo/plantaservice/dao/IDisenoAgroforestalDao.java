@@ -1,5 +1,6 @@
 package gob.nucleo.plantaservice.dao;
 
+import gob.nucleo.viverocommons.entity.CatEspecie;
 import gob.nucleo.viverocommons.entity.DisenoAgroforestal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
@@ -11,4 +12,6 @@ import java.util.List;
 @Repository
 public interface IDisenoAgroforestalDao extends CrudRepository<DisenoAgroforestal, Long> {
     List<DisenoAgroforestal> findByIdPredioIn(List<Long> idsPredio);
+
+    List<DisenoAgroforestal> findByCatEspecieSubcategoria_Id(Long id);
 }

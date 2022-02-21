@@ -55,9 +55,14 @@ public class PlantaParcelaRestController {
     public ResponseEntity<?> guardaPlantaParcela (@RequestBody PlantaParcela plantaParcela){
         Map<String, Object> response = new HashMap<>();
         try{
-            plantaParcelaService.guardaPlantaParcela(plantaParcela);
-            response.put("mensaje", "La planta se ha guardado  con éxito");
-            response.put("success", "true" );
+            if (plantaParcelaService.guardaPlantaParcela(plantaParcela) == null){
+                response.put("mensaje", "La especie no corresponde con el diseño agroforestal" );
+                response.put("success", "false" );
+
+            }else{
+                response.put("mensaje", "La planta se ha guardado  con éxito");
+                response.put("success", "true" );
+            }
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED) ;
         }catch (DataAccessException e){
             response.put("mensaje", "Error al realizar el insert a base de datos" );

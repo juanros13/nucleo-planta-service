@@ -31,6 +31,12 @@ public class PlantaParcelaService implements IPlantaParcelaService{
     @Autowired
     IViveroDao viveroDao;
 
+    @Autowired
+    ICatEspecieDao catEspecieDao;
+
+    @Autowired
+    ICatEspecieCategoriaDao catEspecieCategoriaDao;
+
     @Override
     public List<PlantaParcela> findByDisenoAgroforestal(Long idDisenoAgroforestal) {
         DisenoAgroforestal diseno = new DisenoAgroforestal();
@@ -40,9 +46,15 @@ public class PlantaParcelaService implements IPlantaParcelaService{
 
     @Override
     public PlantaParcela guardaPlantaParcela(PlantaParcela plantaParcela) {
-      //  Vivero viv = viveroDao.findById(plantaParcela.getVivero().getId()).get();
-       // plantaParcela.setVivero(viv);
-        return plantaParcelaDao.save(plantaParcela);
+        CatEspecie catEspecie = catEspecieDao.findById(plantaParcela.getCatEspecie().getId()).get();
+
+        DisenoAgroforestal disenoAgroforestal = disenoAgroforestalDao.findById(plantaParcela.getDisenoAgroforestal().getId()).get();
+
+       if (disenoAgroforestal.getCatEspecieSubcategoria().getId().equals(catEspecie.getCatEspecieSubcategoria().getId())){
+           return plantaParcelaDao.save(plantaParcela);
+       }else{
+           return null;
+       }
     }
 
     @Override
