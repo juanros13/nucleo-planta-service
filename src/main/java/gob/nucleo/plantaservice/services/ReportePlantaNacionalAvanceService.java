@@ -25,6 +25,9 @@ public class ReportePlantaNacionalAvanceService implements IReportePlantaNaciona
     @Autowired
     IReportePlantaNacionalSobreviveDao reportePlantaNacionalSobreviveDao;
 
+
+    @Autowired IAvanceTotalTerritoriosDao avanceTotalTerritoriosDao;
+
     @Override
     public List<AvanceNacionalVO> getReporteAvanceNacionalXEspecie() {
         return reportePlantaNacionalAvanceDao.findByAvancePlantaNacionalXEspecie();
@@ -48,6 +51,11 @@ public class ReportePlantaNacionalAvanceService implements IReportePlantaNaciona
     @Override
     public List<AvanceNacionalSobreviveVO> getReporteAvanceNacionalSobrevive() {
         return reportePlantaNacionalSobreviveDao.findByAvancePlantaNacionalSobrevive();
+    }
+
+    @Override
+    public List<AvanceTotalTerritoriosVO> getReporteAvanceTotalTerritorios() {
+        return avanceTotalTerritoriosDao.findByAvanceTotalTerritorio();
     }
 }
 

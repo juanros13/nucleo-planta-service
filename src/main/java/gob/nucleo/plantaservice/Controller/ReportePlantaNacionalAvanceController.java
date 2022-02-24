@@ -99,6 +99,22 @@ public class ReportePlantaNacionalAvanceController {
 
 
     }
+    @GetMapping("/reporteAvanceTotalTerritorio/")
+    public ResponseEntity<?> reporteAvanceTotalTerritorio(){
+        Map<String, Object> response = new HashMap<>();
+        try{
+            response.put("reportePlanta", reportePlantaNacionalAvanceService.getReporteAvanceTotalTerritorios());
+            response.put("success", "true" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
+        }catch (DataAccessException e){
+            response.put("mensaje", "Error al realizar la consulta a base de datos" );
+            response.put("error",  e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            response.put("success", "false" );
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
 
 }
 
