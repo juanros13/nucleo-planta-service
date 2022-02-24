@@ -34,7 +34,6 @@ public interface IAvanceTotalTerritoriosDao extends JpaRepository<AvanceTotalTer
             " LEFT JOIN usuarios ut ON ut.estructura_id = beneficiarios.estructura_id  " +
             " LEFT JOIN usuarios uf ON uf.id = ut.facilitador_id " +
             " LEFT JOIN territorios ON territorios.id = ut.territorio_id " +
-            " WHERE CONCAT(cad_cat_especie_subcategoria.nombre_comun,' (',cad_cat_especie_subcategoria.nombre_cientifico,')') != '  ( )' " +
             "GROUP BY  " +
             "territorios.id " +
             ")b ON b.id = territorios.id " +
