@@ -52,7 +52,7 @@ public interface IAvanceTotalTerritoriosDao extends JpaRepository<AvanceTotalTer
             " LEFT JOIN usuarios up ON up.estructura_id = binomio.tecnico_productivo_id  AND up.perfil_id =5 " +
             " LEFT JOIN usuarios us ON us.estructura_id = binomio.tecnico_social_id  AND us.perfil_id =6 " +
             " LEFT JOIN territorios ON territorios.id = uf.territorio_id " +
-            " WHERE cad_vivero_planta.fuente_abast_id = 3 AND CONCAT(cad_cat_especie_subcategoria.nombre_comun,' (',cad_cat_especie_subcategoria.nombre_cientifico,')') != '  ( )'   " +
+            " WHERE cad_vivero_planta.fuente_abast_id = 3  " +
             " GROUP BY " +
             " territorios.id " +
             ")c ON c.id = territorios.id " +
@@ -64,7 +64,7 @@ public interface IAvanceTotalTerritoriosDao extends JpaRepository<AvanceTotalTer
             "  LEFT JOIN beneficiarios ON beneficiarios.id = cad_predio.registro_id " +
             "  LEFT JOIN usuarios ut ON ut.estructura_id = beneficiarios.estructura_id AND ut.perfil_id in(5,6) " +
             "  LEFT JOIN territorios ON territorios.id = ut.territorio_id " +
-            "  WHERE CONCAT(cad_cat_especie_subcategoria.nombre_comun,' (',cad_cat_especie_subcategoria.nombre_cientifico,')') != '  ( )' " +
+
             " GROUP BY  " +
             " territorios.id " +
             ")d ON d.id = territorios.id " +
