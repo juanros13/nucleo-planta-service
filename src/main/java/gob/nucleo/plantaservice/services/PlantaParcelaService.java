@@ -59,7 +59,14 @@ public class PlantaParcelaService implements IPlantaParcelaService{
 
     @Override
     public PlantaParcela actualizaPlantaParcela(PlantaParcela plantaParcela) {
-        return plantaParcelaDao.save(plantaParcela);
+        CatEspecie catEspecie = catEspecieDao.findById(plantaParcela.getCatEspecie().getId()).get();
+        DisenoAgroforestal disenoAgroforestal = disenoAgroforestalDao.findById(plantaParcela.getDisenoAgroforestal().getId()).get();
+
+        if (disenoAgroforestal.getCatEspecieSubcategoria().getId().equals(catEspecie.getCatEspecieSubcategoria().getId())){
+            return plantaParcelaDao.save(plantaParcela);
+        }else{
+            return null;
+        }
     }
 
     @Override

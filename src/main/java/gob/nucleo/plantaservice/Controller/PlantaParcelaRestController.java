@@ -77,9 +77,14 @@ public class PlantaParcelaRestController {
     public ResponseEntity<?> actualizaPlantaParcela (@RequestBody PlantaParcela plantaParcela){
         Map<String, Object> response = new HashMap<>();
         try{
-            plantaParcelaService.actualizaPlantaParcela(plantaParcela);
-            response.put("mensaje", "La planta se ha actualizado con éxito");
-            response.put("success", "true" );
+            if (plantaParcelaService.actualizaPlantaParcela(plantaParcela) == null){
+                response.put("mensaje", "La especie no corresponde con el diseño agroforestal" );
+                response.put("success", "false" );
+            }else{
+                response.put("mensaje", "La planta se ha actualizado con éxito");
+                response.put("success", "true" );
+            }
+
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
         }catch (DataAccessException e){
             response.put("mensaje", "Error al realizar el insert a base de datos" );
