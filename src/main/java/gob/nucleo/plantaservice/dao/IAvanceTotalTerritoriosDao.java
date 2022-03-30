@@ -28,12 +28,11 @@ public interface IAvanceTotalTerritoriosDao extends JpaRepository<AvanceTotalTer
             " from cad_planta_parcela " +
             " LEFT JOIN cad_diseno_agroforestal ON cad_diseno_agroforestal.id = cad_planta_parcela.diseno_agroforestal_id " +
             " LEFT JOIN cad_predio ON cad_predio.id = cad_diseno_agroforestal.predio_id " +
-            " LEFT JOIN cad_cat_especie ON cad_cat_especie.id = cad_planta_parcela.especie_id " +
-            " LEFT JOIN cad_cat_especie_subcategoria ON cad_cat_especie_subcategoria.id = cad_cat_especie.subcategoria_especie_id " +
             " LEFT JOIN beneficiarios ON beneficiarios.id = cad_predio.registro_id " +
             " LEFT JOIN usuarios ut ON ut.estructura_id = beneficiarios.estructura_id  " +
             " LEFT JOIN usuarios uf ON uf.id = ut.facilitador_id " +
             " LEFT JOIN territorios ON territorios.id = ut.territorio_id " +
+            " WHERE beneficiarios.status = 1" +
             "GROUP BY  " +
             "territorios.id " +
             ")b ON b.id = territorios.id " +
@@ -44,8 +43,6 @@ public interface IAvanceTotalTerritoriosDao extends JpaRepository<AvanceTotalTer
             " SUM(cad_vivero_planta.cantidad_semillero) + SUM(cad_vivero_planta.cantidad_desarrollo) + SUM(cad_vivero_planta.cantidad_lista_extraer) AS planta_en_vivero " +
             " from cad_vivero " +
             " LEFT JOIN cad_vivero_planta ON cad_vivero_planta.vivero_id = cad_vivero.id " +
-            " LEFT JOIN cad_cat_especie ON cad_cat_especie.id = cad_vivero_planta.especie_id " +
-            " LEFT JOIN cad_cat_especie_subcategoria ON cad_cat_especie_subcategoria.id = cad_cat_especie.subcategoria_especie_id " +
             " LEFT JOIN cac ON cad_vivero_planta.cac_id = cac.id " +
             " LEFT JOIN binomio ON binomio.id = cac.binomio_id " +
             " LEFT JOIN usuarios uf ON uf.estructura_id = binomio.facilitador_id AND uf.perfil_id =8 " +
@@ -60,11 +57,10 @@ public interface IAvanceTotalTerritoriosDao extends JpaRepository<AvanceTotalTer
             " SELECT territorios.id,  sum(cad_diseno_agroforestal.cantidad_meta) as cantidad_meta_disenio " +
             "  from cad_diseno_agroforestal " +
             "  LEFT JOIN cad_predio ON cad_predio.id = cad_diseno_agroforestal.predio_id " +
-            "  LEFT JOIN cad_cat_especie_subcategoria ON cad_cat_especie_subcategoria.id = cad_diseno_agroforestal.subcategoria_especie_id " +
             "  LEFT JOIN beneficiarios ON beneficiarios.id = cad_predio.registro_id " +
             "  LEFT JOIN usuarios ut ON ut.estructura_id = beneficiarios.estructura_id AND ut.perfil_id in(5,6) " +
             "  LEFT JOIN territorios ON territorios.id = ut.territorio_id " +
-
+            " WHERE beneficiarios.status = 1" +
             " GROUP BY  " +
             " territorios.id " +
             ")d ON d.id = territorios.id " +
