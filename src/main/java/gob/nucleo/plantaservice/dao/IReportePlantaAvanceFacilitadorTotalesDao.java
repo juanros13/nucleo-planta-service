@@ -31,6 +31,7 @@ public interface IReportePlantaAvanceFacilitadorTotalesDao extends JpaRepository
             "    LEFT JOIN cad_planta_parcela ON cad_planta_parcela.diseno_agroforestal_id = cad_diseno_agroforestal.id " +
             "    WHERE " +
             "    cad_diseno_agroforestal.ID IS NOT NULL  " +
+            "    AND beneficiarios.status =1 " +
             "    AND estructuras.facilitador_id = ?1 " +
             "  GROUP BY estructuras.facilitador_id " +
             " ) b on b.facilitador_id = estructuras.id " +
@@ -43,6 +44,7 @@ public interface IReportePlantaAvanceFacilitadorTotalesDao extends JpaRepository
             "    LEFT JOIN cad_diseno_agroforestal ON cad_diseno_agroforestal.predio_id = cad_predio.id " +
             "    WHERE " +
             "    cad_diseno_agroforestal.ID IS NOT NULL  " +
+            "    AND beneficiarios.status =1 " +
             "    AND estructuras.facilitador_id = ?2 " +
             "  GROUP BY estructuras.facilitador_id " +
             " ) c on c.facilitador_id = estructuras.id " +
