@@ -100,7 +100,8 @@ public class PlantaParcelaRestController {
     public ResponseEntity<?>  deletePlantaParcela(@PathVariable Long idPlanta){
         Map<String, Object> response = new HashMap<>();
         try{
-            plantaParcelaService.deletePlantaParcela(idPlanta);
+            Long idBeneficiario =  plantaParcelaService.deletePlantaParcela(idPlanta);
+            plantaParcelaService.actualizaAvancePlanta(idBeneficiario);
         }catch (DataAccessException e){
             response.put("success", "false" );
             response.put("mensaje", "Error al eliminar planta parcela en la DB");

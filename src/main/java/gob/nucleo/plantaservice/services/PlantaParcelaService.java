@@ -48,10 +48,15 @@ public class PlantaParcelaService implements IPlantaParcelaService{
     public PlantaParcela guardaPlantaParcela(PlantaParcela plantaParcela) {
         CatEspecie catEspecie = catEspecieDao.findById(plantaParcela.getCatEspecie().getId()).get();
 
+
         DisenoAgroforestal disenoAgroforestal = disenoAgroforestalDao.findById(plantaParcela.getDisenoAgroforestal().getId()).get();
 
        if (disenoAgroforestal.getCatEspecieSubcategoria().getId().equals(catEspecie.getCatEspecieSubcategoria().getId())){
-           return plantaParcelaDao.save(plantaParcela);
+           PlantaParcela planta = plantaParcelaDao.save(plantaParcela);
+           Predio predio = predioDao.findById(disenoAgroforestal.getIdPredio()).get();
+
+           actualizaAvancePlanta(predio.getIdRegistro());
+           return planta;
        }else{
            return null;
        }
@@ -63,7 +68,11 @@ public class PlantaParcelaService implements IPlantaParcelaService{
         DisenoAgroforestal disenoAgroforestal = disenoAgroforestalDao.findById(plantaParcela.getDisenoAgroforestal().getId()).get();
 
         if (disenoAgroforestal.getCatEspecieSubcategoria().getId().equals(catEspecie.getCatEspecieSubcategoria().getId())){
-            return plantaParcelaDao.save(plantaParcela);
+            PlantaParcela planta = plantaParcelaDao.save(plantaParcela);
+            Predio predio = predioDao.findById(disenoAgroforestal.getIdPredio()).get();
+
+            actualizaAvancePlanta(predio.getIdRegistro());
+            return planta;
         }else{
             return null;
         }
@@ -119,9 +128,13 @@ public class PlantaParcelaService implements IPlantaParcelaService{
     }
 
 
-    @Transactional
-    public void deletePlantaParcela(Long id) {
+    @Override
+    public Long deletePlantaParcela(Long id) {
+        PlantaParcela planta = plantaParcelaDao.findById(id).get();
+        Predio predio = predioDao.findById(planta.getDisenoAgroforestal().getIdPredio()).get();
         plantaParcelaDao.deleteById(id);
+        return predio.getIdRegistro();
+
     }
 
     @Transactional

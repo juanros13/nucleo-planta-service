@@ -13,7 +13,7 @@ public interface IPlantaParcelaService {
 
     PlantaParcela actualizaPlantaParcela (PlantaParcela plantaParcela);
 
-    void deletePlantaParcela(Long id);
+    Long deletePlantaParcela(Long id);
 
     void deleteDisenoAgroforestal(Long id);
 
