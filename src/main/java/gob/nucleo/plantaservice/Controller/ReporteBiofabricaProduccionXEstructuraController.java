@@ -23,7 +23,7 @@ public class ReporteBiofabricaProduccionXEstructuraController {
     public ResponseEntity<?> reporteBioProdXEstructura (@PathVariable Long idEstructura){
         Map<String, Object> response = new HashMap<>();
         try{
-            response.put("reporteBiofabricaProduccionXEstructura", reporteBiofabricaProduccionXEstructuraService.reporteBioProdXEstructura(idEstructura));
+            response.put("reporteBioProdXEstructura", reporteBiofabricaProduccionXEstructuraService.reporteBioProdXEstructura(idEstructura));
             response.put("success", "true" );
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK) ;
         }catch (DataAccessException e){
