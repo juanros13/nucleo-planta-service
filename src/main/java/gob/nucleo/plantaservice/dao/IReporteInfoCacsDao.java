@@ -14,8 +14,9 @@ public interface IReporteInfoCacsDao extends JpaRepository<InformacionCacsVO, Lo
             "us_fac.name AS facilitador_nombre,  " +
             "us_tp.estructura_id AS tecnico_productivo_estructura_id, " +
             "us_tp.name AS tecnico_productivo_estructura_nombre, " +
-            "us_ts.estructura_id AS tecnico_productivo_social_id, " +
-            "us_ts.name AS tecnico_productivo_social_nombre, " +
+            "binomio.id AS binomio_id, " +
+            "us_ts.estructura_id AS tecnico_social_id, " +
+            "us_ts.name AS tecnico_social_nombre, " +
             "us_territorial.estructura_id AS territorial_estructura_id, " +
             "us_territorial.name AS territorial_nombre, " +
             "  TRIM(to_char(entidades.id,'00')) AS entidad_cve, " +
